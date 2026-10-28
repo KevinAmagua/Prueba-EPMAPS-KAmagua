@@ -2,7 +2,7 @@ import axios, { AxiosResponse, AxiosError } from 'axios';
 
 // La URL y el timeout admiten configuración de entorno; si no se proporcionan,
 // se usa el servidor de desarrollo y un límite de cinco segundos.
-const baseURL = process.env.EXPO_PUBLIC_MOCK_API_URL || 'https://67873281c4adaac43cb080b0.mockapi.io/api/v1';
+const baseURL = process.env.EXPO_PUBLIC_MOCK_API_URL || 'https://6ad90d0bf89c5702ed9a6438.mockapi.io';
 const timeoutParam = process.env.EXPO_PUBLIC_API_TIMEOUT ? parseInt(process.env.EXPO_PUBLIC_API_TIMEOUT, 10) : 5000;
 
 /** Cliente HTTP compartido para las solicitudes a la API de medidores. */

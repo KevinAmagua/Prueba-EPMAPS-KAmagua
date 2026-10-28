@@ -68,8 +68,10 @@ export default function PendingReadingsScreen() {
   };
 
   /**
-   * Abre la captura del medidor pendiente; los elementos ya sincronizados
-   * se consideran de solo lectura.
+   * R10: Restricciones de Envío, Edición y Prevención de Duplicados.
+   * Abre la captura del medidor pendiente para corrección.
+   * RESTRICCIÓN: Si la lectura ya fue sincronizada exitosamente con el servidor (item.sincronizado === true),
+   * se bloquea estrictamente su modificación y se muestra una alerta informativa.
    */
   const handleEdit = (item: PendingSyncItem) => {
     if (item.sincronizado) {
@@ -124,6 +126,7 @@ export default function PendingReadingsScreen() {
           <Text style={styles.syncErrorText}>Error sync: {item.ultimoError}</Text>
         ) : null}
 
+        {/* R10: El botón de edición solo se muestra si el registro aún está pendiente de envío local. */}
         {!item.sincronizado && (
           <TouchableOpacity style={styles.editButton} onPress={() => handleEdit(item)}>
             <Text style={styles.editButtonText}>Editar / Corregir</Text>
