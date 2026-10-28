@@ -18,7 +18,11 @@
         "monochromeImage": "./assets/images/android-icon-monochrome.png"
       },
       "predictiveBackGestureEnabled": false,
-      "package": "com.kevinamagua.Prueba1KAmagua"
+      "package": "com.kevinamagua.Prueba1KAmagua",
+      "permissions": [
+        "INTERNET"
+      ],
+      "usesCleartextTraffic": true
     },
     "web": {
       "output": "static",
