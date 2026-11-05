@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Pressable, StyleSheet, Text } from 'react-native';
 
 import { AuthButton, AuthFeedback, AuthScreen } from '@/components/auth-ui';
+import { FontFamily, TallerColors } from '@/constants/taller-colors';
 import { useSesion } from '@/context/sesion';
 import { obtenerMensajeErrorFirebase } from '@/lib/errores-firebase';
 
@@ -126,14 +127,16 @@ export default function VerificacionScreen() {
 const styles = StyleSheet.create({
   email: {
     alignSelf: 'stretch',
-    color: '#1A2530',
+    color: TallerColors.textPrimary,
     fontSize: 16,
+    fontFamily: FontFamily.semibold,
     fontWeight: '700',
   },
   instructions: {
     alignSelf: 'stretch',
-    color: '#5A6B7C',
+    color: TallerColors.textSecondary,
     fontSize: 14,
+    fontFamily: FontFamily.regular,
     lineHeight: 21,
   },
   linkButton: {
@@ -141,8 +144,9 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
   },
   linkText: {
-    color: '#1F3C88',
+    color: TallerColors.brand,
     fontSize: 14,
+    fontFamily: FontFamily.bold,
     fontWeight: '700',
   },
 });

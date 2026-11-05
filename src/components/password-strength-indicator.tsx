@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View } from 'react-native';
 
 import { Colors } from '@/constants/Colors';
+import { FontFamily } from '@/constants/taller-colors';
 
 type NivelSeguridad = 'debil' | 'media' | 'fuerte';
 
@@ -77,6 +78,7 @@ const styles = StyleSheet.create({
   },
   etiqueta: {
     fontSize: 13,
+    fontFamily: FontFamily.semibold,
     fontWeight: '600',
   },
 });

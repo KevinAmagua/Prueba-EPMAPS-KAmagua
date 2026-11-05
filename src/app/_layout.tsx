@@ -1,6 +1,14 @@
 import '../global.css';
 
+import { BigShoulders_700Bold } from '@expo-google-fonts/big-shoulders';
+import {
+  SpaceGrotesk_400Regular,
+  SpaceGrotesk_500Medium,
+  SpaceGrotesk_600SemiBold,
+  SpaceGrotesk_700Bold,
+} from '@expo-google-fonts/space-grotesk';
 import { Stack } from 'expo-router';
+import { useFonts } from 'expo-font';
 import { StatusBar } from 'expo-status-bar';
 import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 
@@ -11,13 +19,32 @@ import { SesionProvider, useSesion } from '@/context/sesion';
 import { obtenerMensajeErrorFirebase } from '@/lib/errores-firebase';
 
 export default function RootLayout() {
+  const [fontsLoaded, fontError] = useFonts({
+    BigShoulders_700Bold,
+    SpaceGrotesk_400Regular,
+    SpaceGrotesk_500Medium,
+    SpaceGrotesk_600SemiBold,
+    SpaceGrotesk_700Bold,
+  });
+
+  if (fontError) throw fontError;
+
   return (
     <SesionProvider>
       <View style={styles.container}>
         <CurvasDeNivel />
         <StatusBar style="light" />
-        <OfflineBanner />
-        <RutasProtegidas />
+        {fontsLoaded ? (
+          <>
+            <OfflineBanner />
+            <RutasProtegidas />
+          </>
+        ) : (
+          <View style={styles.loading}>
+            <ActivityIndicator size="large" color={Colors.primary} />
+            <Text style={styles.loadingMessage}>Preparando la aplicación…</Text>
+          </View>
+        )}
       </View>
     </SesionProvider>
   );
@@ -50,7 +77,11 @@ function RutasProtegidas() {
       screenOptions={{
         headerStyle: { backgroundColor: Colors.primary },
         headerTintColor: '#FFFFFF',
-        headerTitleStyle: { fontSize: 17, fontWeight: '700' },
+        headerTitleStyle: {
+          fontSize: 17,
+          fontFamily: 'SpaceGrotesk_700Bold',
+          fontWeight: '700',
+        },
         headerShadowVisible: false,
         contentStyle: { backgroundColor: 'transparent' },
       }}>
@@ -75,7 +106,7 @@ function RutasProtegidas() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: COLORES_CURVAS_DE_NIVEL.fondo,
+    backgroundColor: Colors.background,
   },
   loading: {
     flex: 1,
@@ -88,12 +119,14 @@ const styles = StyleSheet.create({
     marginTop: 12,
     color: Colors.textPrimary,
     fontSize: 15,
+    fontFamily: 'SpaceGrotesk_500Medium',
     fontWeight: '600',
     textAlign: 'center',
   },
   errorTitle: {
     color: Colors.textPrimary,
     fontSize: 18,
+    fontFamily: 'SpaceGrotesk_700Bold',
     fontWeight: '700',
     textAlign: 'center',
   },
@@ -101,6 +134,7 @@ const styles = StyleSheet.create({
     marginTop: 8,
     color: Colors.textSecondary,
     fontSize: 15,
+    fontFamily: 'SpaceGrotesk_400Regular',
     textAlign: 'center',
   },
 });

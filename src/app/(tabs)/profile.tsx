@@ -3,6 +3,7 @@ import { Alert, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { router } from 'expo-router';
 
 import { Colors } from '@/constants/Colors';
+import { FontFamily, cardShadow } from '@/constants/taller-colors';
 import { useSesion } from '@/context/sesion';
 import { obtenerMensajeErrorFirebase } from '@/lib/errores-firebase';
 
@@ -77,33 +78,32 @@ const styles = StyleSheet.create({
   },
   card: {
     backgroundColor: Colors.surface,
-    borderRadius: 16,
+    borderRadius: 22,
     padding: 24,
-    shadowColor: '#1A2530',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.08,
-    shadowRadius: 8,
-    elevation: 2,
+    ...cardShadow,
   },
   title: {
     fontSize: 22,
+    fontFamily: FontFamily.bold,
     fontWeight: '700',
     color: Colors.primary,
     marginBottom: 22,
   },
   text: {
     fontSize: 16,
+    fontFamily: FontFamily.regular,
     color: Colors.textPrimary,
     lineHeight: 24,
     marginBottom: 14,
   },
   bold: {
+    fontFamily: FontFamily.semibold,
     fontWeight: '700',
   },
   editButton: {
     minHeight: 52,
     backgroundColor: Colors.primary,
-    borderRadius: 12,
+    borderRadius: 14,
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 12,
@@ -111,12 +111,13 @@ const styles = StyleSheet.create({
   editButtonText: {
     color: '#FFFFFF',
     fontSize: 16,
+    fontFamily: FontFamily.bold,
     fontWeight: '700',
   },
   logoutButton: {
     minHeight: 56,
     backgroundColor: Colors.danger,
-    borderRadius: 12,
+    borderRadius: 14,
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 28,
@@ -124,6 +125,7 @@ const styles = StyleSheet.create({
   logoutButtonText: {
     color: '#FFFFFF',
     fontSize: 16,
+    fontFamily: FontFamily.bold,
     fontWeight: '700',
   },
   logoutButtonDisabled: {

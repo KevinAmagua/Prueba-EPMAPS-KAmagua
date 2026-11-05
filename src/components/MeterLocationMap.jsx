@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import { WebView } from 'react-native-webview';
 
-import { TallerColors, cardShadow } from '@/constants/taller-colors';
+import { TallerColors, FontFamily, cardShadow } from '@/constants/taller-colors';
 
 /**
  * HTML de Leaflet + OpenStreetMap cargado dentro del WebView.
@@ -583,12 +583,14 @@ const styles = StyleSheet.create({
   title: {
     color: TallerColors.textPrimary,
     fontSize: 16,
+    fontFamily: FontFamily.bold,
     fontWeight: '800',
   },
   subtitle: {
     marginTop: 4,
     color: TallerColors.textSecondary,
     fontSize: 12.5,
+    fontFamily: FontFamily.regular,
     lineHeight: 18,
   },
   badge: {
@@ -607,6 +609,7 @@ const styles = StyleSheet.create({
   },
   badgeText: {
     fontSize: 11,
+    fontFamily: FontFamily.bold,
     fontWeight: '800',
     textTransform: 'uppercase',
     letterSpacing: 0.3,
@@ -641,6 +644,7 @@ const styles = StyleSheet.create({
   toggleText: {
     color: TallerColors.textSecondary,
     fontSize: 12.5,
+    fontFamily: FontFamily.semibold,
     fontWeight: '700',
   },
   toggleTextActive: {
@@ -672,6 +676,7 @@ const styles = StyleSheet.create({
   mapOverlayText: {
     color: TallerColors.textPrimary,
     fontSize: 13,
+    fontFamily: FontFamily.medium,
     fontWeight: '600',
     textAlign: 'center',
   },
@@ -688,6 +693,7 @@ const styles = StyleSheet.create({
     flex: 1,
     color: TallerColors.danger,
     fontSize: 12.5,
+    fontFamily: FontFamily.medium,
     lineHeight: 18,
     fontWeight: '600',
   },
@@ -704,6 +710,7 @@ const styles = StyleSheet.create({
     flex: 1,
     color: TallerColors.textSecondary,
     fontSize: 12.5,
+    fontFamily: FontFamily.medium,
     fontWeight: '600',
     fontVariant: ['tabular-nums'],
   },

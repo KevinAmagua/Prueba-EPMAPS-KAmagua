@@ -12,6 +12,7 @@ import {
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Colors } from '@/constants/Colors';
+import { FontFamily, cardShadow } from '@/constants/taller-colors';
 import { PendingSyncItem } from '@/types/medidor';
 import { processSyncQueue } from '@/services/syncQueue';
 import { router, useFocusEffect } from 'expo-router';
@@ -162,6 +163,7 @@ export default function PendingReadingsScreen() {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
+        <Text style={styles.eyebrow}>CENTRO DE OPERACIONES</Text>
         <Text style={styles.title}>Gestión de Lecturas</Text>
         <Text style={styles.subtitle}>Cola de sincronización y registros locales</Text>
 
@@ -177,8 +179,14 @@ export default function PendingReadingsScreen() {
           </View>
         </View>
 
-        <TouchableOpacity style={styles.syncButton} onPress={handleManualSync} activeOpacity={0.8}>
-          <Text style={styles.syncButtonText}>🔄 Sincronizar Cola Ahora</Text>
+        <TouchableOpacity
+          style={styles.syncButton}
+          onPress={handleManualSync}
+          activeOpacity={0.8}
+          accessibilityRole="button"
+          accessibilityLabel="Sincronizar lecturas pendientes ahora">
+          <Ionicons name="sync-outline" size={19} color="#FFFFFF" />
+          <Text style={styles.syncButtonText}>Sincronizar ahora</Text>
         </TouchableOpacity>
       </View>
 
@@ -204,27 +212,33 @@ export default function PendingReadingsScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'transparent',
-    padding: 20,
+    backgroundColor: Colors.background,
+    paddingHorizontal: 18,
+    paddingTop: 16,
   },
   header: {
     marginBottom: 18,
     backgroundColor: Colors.surface,
     padding: 20,
-    borderRadius: 16,
-    shadowColor: '#1A2530',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.08,
-    shadowRadius: 8,
-    elevation: 2,
+    borderRadius: 22,
+    ...cardShadow,
+  },
+  eyebrow: {
+    color: Colors.secondary,
+    fontSize: 11,
+    fontFamily: FontFamily.bold,
+    letterSpacing: 1,
+    marginBottom: 8,
   },
   title: {
     fontSize: 22,
+    fontFamily: FontFamily.bold,
     fontWeight: '700',
     color: Colors.primary,
   },
   subtitle: {
     fontSize: 14,
+    fontFamily: FontFamily.regular,
     color: Colors.textSecondary,
     marginTop: 5,
     marginBottom: 16,
@@ -238,7 +252,7 @@ const styles = StyleSheet.create({
   statBox: {
     flex: 1,
     backgroundColor: Colors.background,
-    borderRadius: 12,
+    borderRadius: 15,
     paddingVertical: 12,
     paddingHorizontal: 10,
     alignItems: 'center',
@@ -247,18 +261,22 @@ const styles = StyleSheet.create({
   },
   statNumber: {
     fontSize: 22,
+    fontFamily: FontFamily.bold,
     fontWeight: '700',
     color: Colors.primary,
   },
   statLabel: {
     fontSize: 12,
+    fontFamily: FontFamily.medium,
     color: Colors.textSecondary,
     marginTop: 4,
   },
   syncButton: {
     backgroundColor: Colors.primary,
     minHeight: 56,
-    borderRadius: 12,
+    flexDirection: 'row',
+    gap: 9,
+    borderRadius: 15,
     justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: 12,
@@ -267,6 +285,7 @@ const styles = StyleSheet.create({
   syncButtonText: {
     color: '#FFFFFF',
     fontSize: 15,
+    fontFamily: FontFamily.bold,
     fontWeight: '700',
   },
   listContainer: {
@@ -274,14 +293,10 @@ const styles = StyleSheet.create({
   },
   itemCard: {
     backgroundColor: Colors.surface,
-    borderRadius: 16,
-    padding: 18,
+    borderRadius: 20,
+    padding: 20,
     marginBottom: 14,
-    shadowColor: '#1A2530',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.08,
-    shadowRadius: 8,
-    elevation: 2,
+    ...cardShadow,
   },
   rowHeader: {
     flexDirection: 'row',
@@ -291,6 +306,7 @@ const styles = StyleSheet.create({
   },
   itemTitle: {
     fontSize: 16,
+    fontFamily: FontFamily.bold,
     fontWeight: '700',
     color: Colors.primary,
     flexShrink: 1,
@@ -304,6 +320,7 @@ const styles = StyleSheet.create({
   badgeText: {
     color: '#FFFFFF',
     fontSize: 12,
+    fontFamily: FontFamily.bold,
     fontWeight: '700',
   },
   pendingBadgeText: {
@@ -311,12 +328,14 @@ const styles = StyleSheet.create({
   },
   itemText: {
     fontSize: 15,
+    fontFamily: FontFamily.regular,
     color: Colors.textPrimary,
     lineHeight: 22,
     marginBottom: 6,
   },
   dateText: {
     fontSize: 13,
+    fontFamily: FontFamily.medium,
     color: Colors.textSecondary,
     marginTop: 6,
     marginBottom: 12,
@@ -338,6 +357,7 @@ const styles = StyleSheet.create({
   },
   photoLabel: {
     fontSize: 13,
+    fontFamily: FontFamily.medium,
     color: Colors.textSecondary,
     fontWeight: '600',
     flexShrink: 1,
@@ -345,19 +365,21 @@ const styles = StyleSheet.create({
   syncErrorText: {
     color: Colors.danger,
     fontSize: 14,
+    fontFamily: FontFamily.medium,
     marginBottom: 12,
   },
   editButton: {
     backgroundColor: Colors.secondary,
     minHeight: 52,
     paddingHorizontal: 12,
-    borderRadius: 12,
+    borderRadius: 14,
     alignItems: 'center',
     justifyContent: 'center',
   },
   editButtonText: {
     color: '#FFFFFF',
     fontSize: 14,
+    fontFamily: FontFamily.bold,
     fontWeight: '700',
   },
   emptyContainer: {
@@ -367,6 +389,7 @@ const styles = StyleSheet.create({
   },
   emptyText: {
     fontSize: 16,
+    fontFamily: FontFamily.medium,
     color: Colors.textSecondary,
     textAlign: 'center',
     lineHeight: 24,

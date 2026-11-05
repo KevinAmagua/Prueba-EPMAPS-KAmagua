@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 
 import { StatusAnimation } from '@/components/StatusAnimation';
-import { TallerColors, cardShadow } from '@/constants/taller-colors';
+import { TallerColors, FontFamily, cardShadow } from '@/constants/taller-colors';
 import { listarLecturasGPS } from '@/services/readings';
 import { LecturaGPS } from '@/types/lectura-gps';
 
@@ -277,12 +277,14 @@ const styles = StyleSheet.create({
   title: {
     color: TallerColors.textPrimary,
     fontSize: 22,
+    fontFamily: FontFamily.bold,
     fontWeight: '800',
   },
   subtitle: {
     marginTop: 3,
     color: TallerColors.textSecondary,
     fontSize: 12.5,
+    fontFamily: FontFamily.regular,
     lineHeight: 18,
   },
   newButton: {
@@ -305,6 +307,7 @@ const styles = StyleSheet.create({
   newButtonText: {
     color: '#FFFFFF',
     fontSize: 14.5,
+    fontFamily: FontFamily.bold,
     fontWeight: '800',
   },
   pendingButton: {
@@ -325,6 +328,7 @@ const styles = StyleSheet.create({
   pendingButtonText: {
     color: TallerColors.brand,
     fontSize: 13,
+    fontFamily: FontFamily.semibold,
     fontWeight: '700',
   },
   itemCard: {
@@ -363,16 +367,19 @@ const styles = StyleSheet.create({
   itemTitle: {
     color: TallerColors.textPrimary,
     fontSize: 15,
+    fontFamily: FontFamily.bold,
     fontWeight: '800',
   },
   itemDate: {
     marginTop: 3,
     color: TallerColors.textSecondary,
     fontSize: 11.5,
+    fontFamily: FontFamily.regular,
   },
   itemValue: {
     color: TallerColors.brand,
     fontSize: 16,
+    fontFamily: FontFamily.bold,
     fontWeight: '800',
     fontVariant: ['tabular-nums'],
   },
@@ -396,6 +403,7 @@ const styles = StyleSheet.create({
     flex: 1,
     color: TallerColors.textSecondary,
     fontSize: 11.5,
+    fontFamily: FontFamily.medium,
     fontVariant: ['tabular-nums'],
   },
   modeBadge: {
@@ -416,6 +424,7 @@ const styles = StyleSheet.create({
   modeBadgeText: {
     color: '#047857',
     fontSize: 10.5,
+    fontFamily: FontFamily.bold,
     fontWeight: '800',
     textTransform: 'uppercase',
   },
@@ -437,6 +446,7 @@ const styles = StyleSheet.create({
     flex: 1,
     color: TallerColors.danger,
     fontSize: 12.5,
+    fontFamily: FontFamily.medium,
     lineHeight: 18,
     fontWeight: '600',
   },
@@ -458,6 +468,7 @@ const styles = StyleSheet.create({
     marginTop: 18,
     color: TallerColors.textPrimary,
     fontSize: 17,
+    fontFamily: FontFamily.bold,
     fontWeight: '800',
     textAlign: 'center',
   },
@@ -465,6 +476,7 @@ const styles = StyleSheet.create({
     marginTop: 7,
     color: TallerColors.textSecondary,
     fontSize: 13,
+    fontFamily: FontFamily.regular,
     lineHeight: 19,
     textAlign: 'center',
   },
@@ -480,6 +492,7 @@ const styles = StyleSheet.create({
   emptyButtonText: {
     color: '#FFFFFF',
     fontSize: 13.5,
+    fontFamily: FontFamily.bold,
     fontWeight: '800',
   },
 });

@@ -1,4 +1,6 @@
 import { Colors } from '@/constants/Colors';
+import { FontFamily, cardShadow } from '@/constants/taller-colors';
+import { Ionicons } from '@expo/vector-icons';
 import { buscarMedidorPorCodigo } from '@/services/readings';
 import { Medidor } from '@/types/medidor';
 import { validateMeterCode } from '@/utils/validators';
@@ -58,6 +60,7 @@ export default function MeterSearchScreen() {
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.headerCard}>
+        <Text style={styles.eyebrow}>REGISTRO EN CAMPO</Text>
         <Text style={styles.title}>Búsqueda de Medidor</Text>
         <Text style={styles.subtitle}>Ingrese el código asignado en campo (MED-XXXXXX)</Text>
       </View>
@@ -99,10 +102,16 @@ export default function MeterSearchScreen() {
         activeOpacity={0.8}
         accessibilityRole="button"
       >
-        <Text style={styles.gpsHistoryTitle}>📍 Historial de lecturas</Text>
-        <Text style={styles.gpsHistorySubtext}>
-          Consulta los registros guardados en MockAPI y abre el mapa de cada lectura.
-        </Text>
+        <View style={styles.historyIcon}>
+          <Ionicons name="map-outline" size={21} color={Colors.primary} />
+        </View>
+        <View style={styles.historyCopy}>
+          <Text style={styles.gpsHistoryTitle}>Historial de lecturas</Text>
+          <Text style={styles.gpsHistorySubtext}>
+            Consulta los registros y su ubicación.
+          </Text>
+        </View>
+        <Ionicons name="chevron-forward" size={19} color={Colors.textSecondary} />
       </TouchableOpacity>
 
       {mensajeResultado && (
@@ -136,50 +145,57 @@ export default function MeterSearchScreen() {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 20,
+    padding: 22,
     backgroundColor: 'transparent',
     flexGrow: 1,
   },
   headerCard: {
     marginBottom: 14,
     paddingHorizontal: 2,
-    paddingVertical: 8,
+    paddingVertical: 12,
+  },
+  eyebrow: {
+    marginBottom: 8,
+    color: Colors.secondary,
+    fontSize: 11,
+    fontFamily: FontFamily.bold,
+    letterSpacing: 1.1,
   },
   title: {
     fontSize: 24,
+    fontFamily: FontFamily.bold,
     fontWeight: '700',
     color: Colors.primary,
   },
   subtitle: {
     fontSize: 15,
+    fontFamily: FontFamily.regular,
     color: Colors.textSecondary,
     marginTop: 7,
     lineHeight: 21,
   },
   searchCard: {
     backgroundColor: Colors.surface,
-    borderRadius: 16,
-    padding: 20,
+    borderRadius: 20,
+    padding: 22,
     marginBottom: 18,
-    shadowColor: '#1A2530',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.08,
-    shadowRadius: 8,
-    elevation: 2,
+    ...cardShadow,
   },
   label: {
     fontSize: 15,
+    fontFamily: FontFamily.semibold,
     fontWeight: '700',
     color: Colors.textPrimary,
     marginBottom: 10,
   },
   input: {
-    height: 58,
+    height: 60,
     borderWidth: 1,
     borderColor: Colors.border,
-    borderRadius: 12,
+    borderRadius: 14,
     paddingHorizontal: 16,
-    fontSize: 18,
+    fontSize: 19,
+    fontFamily: FontFamily.medium,
     fontWeight: '600',
     letterSpacing: 0.5,
     backgroundColor: Colors.background,
@@ -192,13 +208,14 @@ const styles = StyleSheet.create({
   errorText: {
     color: Colors.danger,
     fontSize: 13,
+    fontFamily: FontFamily.medium,
     lineHeight: 19,
     marginBottom: 14,
   },
   searchButton: {
     minHeight: 56,
     backgroundColor: Colors.primary,
-    borderRadius: 12,
+    borderRadius: 14,
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 10,
@@ -207,70 +224,89 @@ const styles = StyleSheet.create({
   searchButtonText: {
     color: '#FFFFFF',
     fontSize: 16,
+    fontFamily: FontFamily.bold,
     fontWeight: '700',
   },
   gpsHistoryButton: {
-    backgroundColor: '#EEF2FF',
+    minHeight: 78,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 12,
+    backgroundColor: '#EFF6FF',
     borderWidth: 1,
-    borderColor: '#C7D2FE',
-    borderRadius: 14,
-    padding: 16,
+    borderColor: Colors.border,
+    borderRadius: 16,
+    paddingHorizontal: 16,
+    paddingVertical: 14,
     marginBottom: 18,
+  },
+  historyIcon: {
+    width: 44,
+    height: 44,
+    borderRadius: 14,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#DBEAFE',
+  },
+  historyCopy: {
+    flex: 1,
   },
   gpsHistoryTitle: {
     color: Colors.primary,
     fontSize: 15,
+    fontFamily: FontFamily.bold,
     fontWeight: '700',
   },
   gpsHistorySubtext: {
     color: Colors.textSecondary,
     fontSize: 13,
+    fontFamily: FontFamily.regular,
     lineHeight: 19,
     marginTop: 5,
   },
   infoCard: {
-    backgroundColor: '#FFF9E5',
+    backgroundColor: '#FFFBEB',
     borderWidth: 1,
-    borderColor: '#E8D891',
-    borderRadius: 12,
+    borderColor: '#FDE68A',
+    borderRadius: 14,
     padding: 18,
     marginBottom: 16,
   },
   infoText: {
     color: Colors.textPrimary,
     fontSize: 15,
+    fontFamily: FontFamily.medium,
     textAlign: 'center',
     lineHeight: 21,
   },
   resultCard: {
     backgroundColor: Colors.surface,
-    borderRadius: 16,
-    padding: 20,
-    shadowColor: '#1A2530',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.08,
-    shadowRadius: 8,
-    elevation: 2,
+    borderRadius: 20,
+    padding: 22,
+    ...cardShadow,
   },
   resultTitle: {
     fontSize: 19,
+    fontFamily: FontFamily.bold,
     fontWeight: '700',
     color: Colors.success,
     marginBottom: 16,
   },
   resultText: {
     fontSize: 15,
+    fontFamily: FontFamily.regular,
     color: Colors.textPrimary,
     lineHeight: 23,
     marginBottom: 8,
   },
   bold: {
+    fontFamily: FontFamily.semibold,
     fontWeight: '600',
   },
   captureActionButton: {
     minHeight: 56,
     backgroundColor: Colors.primary,
-    borderRadius: 12,
+    borderRadius: 14,
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 18,
@@ -280,6 +316,7 @@ const styles = StyleSheet.create({
   captureActionText: {
     color: '#FFFFFF',
     fontSize: 16,
+    fontFamily: FontFamily.bold,
     fontWeight: '700',
     textAlign: 'center',
   },

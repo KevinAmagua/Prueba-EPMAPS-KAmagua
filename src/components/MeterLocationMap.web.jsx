@@ -2,7 +2,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { createElement, useCallback, useEffect, useRef, useState } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
-import { TallerColors, cardShadow } from '@/constants/taller-colors';
+import { TallerColors, FontFamily, cardShadow } from '@/constants/taller-colors';
 
 const DEFAULT_CENTER = { latitude: -0.1807, longitude: -78.4678 };
 
@@ -139,12 +139,14 @@ const styles = StyleSheet.create({
   title: {
     color: TallerColors.textPrimary,
     fontSize: 16,
+    fontFamily: FontFamily.bold,
     fontWeight: '800',
   },
   subtitle: {
     marginTop: 4,
     color: TallerColors.textSecondary,
     fontSize: 12.5,
+    fontFamily: FontFamily.regular,
     lineHeight: 18,
   },
   badge: {
@@ -159,6 +161,7 @@ const styles = StyleSheet.create({
   badgeText: {
     color: TallerColors.brand,
     fontSize: 11,
+    fontFamily: FontFamily.bold,
     fontWeight: '800',
     textTransform: 'uppercase',
   },
@@ -183,6 +186,7 @@ const styles = StyleSheet.create({
   toggleText: {
     color: TallerColors.textSecondary,
     fontSize: 12.5,
+    fontFamily: FontFamily.semibold,
     fontWeight: '700',
   },
   toggleTextActive: {
@@ -208,6 +212,7 @@ const styles = StyleSheet.create({
     flex: 1,
     color: TallerColors.textSecondary,
     fontSize: 12.5,
+    fontFamily: FontFamily.medium,
     fontWeight: '600',
   },
 });

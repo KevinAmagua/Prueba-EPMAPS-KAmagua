@@ -4,6 +4,7 @@ import { Pressable, StyleSheet, Text } from 'react-native';
 
 import { AuthButton, AuthFeedback, AuthInput, AuthScreen } from '@/components/auth-ui';
 import { PasswordStrengthIndicator } from '@/components/password-strength-indicator';
+import { FontFamily, TallerColors } from '@/constants/taller-colors';
 import { useSesion } from '@/context/sesion';
 import { obtenerMensajeErrorFirebase } from '@/lib/errores-firebase';
 import { validarClave, validarCorreo } from '@/lib/validaciones';
@@ -128,8 +129,9 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
   },
   linkText: {
-    color: '#1F3C88',
+    color: TallerColors.brand,
     fontSize: 14,
+    fontFamily: FontFamily.bold,
     fontWeight: '700',
   },
 });

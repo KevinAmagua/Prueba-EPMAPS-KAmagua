@@ -1,14 +1,10 @@
 /**
- * Paleta y sombras definidas en PROJECT_CONTEXT.md para el Taller 7
- * (mapa Leaflet + Lottie + registro de lecturas con GPS).
- *
- * Se mantiene separada de `Colors` para no alterar el tema institucional
- * que ya usan las pantallas offline-first existentes.
+ * Tokens visuales compartidos por las pantallas de campo, mapas y estados.
  */
 export const TallerColors = {
   brand: '#1E40AF',
   accent: '#3B82F6',
-  success: '#10B981',
+  success: '#047857',
   background: '#F8FAFC',
   surface: '#FFFFFF',
   textPrimary: '#1E293B',
@@ -28,4 +24,12 @@ export const cardShadow = {
   shadowOpacity: 0.08,
   shadowRadius: 10,
   elevation: 3,
+} as const;
+
+export const FontFamily = {
+  display: 'BigShoulders_700Bold',
+  regular: 'SpaceGrotesk_400Regular',
+  medium: 'SpaceGrotesk_500Medium',
+  semibold: 'SpaceGrotesk_600SemiBold',
+  bold: 'SpaceGrotesk_700Bold',
 } as const;

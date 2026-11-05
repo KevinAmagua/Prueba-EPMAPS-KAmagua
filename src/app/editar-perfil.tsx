@@ -13,6 +13,7 @@ import {
 } from 'react-native';
 
 import { Colors } from '@/constants/Colors';
+import { FontFamily, cardShadow } from '@/constants/taller-colors';
 import { useSesion } from '@/context/sesion';
 import { obtenerMensajeErrorFirebase } from '@/lib/errores-firebase';
 
@@ -107,28 +108,27 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     gap: 14,
     padding: 24,
-    borderRadius: 16,
+    borderRadius: 22,
     backgroundColor: Colors.surface,
-    shadowColor: '#1A2530',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.08,
-    shadowRadius: 8,
-    elevation: 2,
+    ...cardShadow,
   },
   title: {
     color: Colors.primary,
     fontSize: 22,
+    fontFamily: FontFamily.bold,
     fontWeight: '700',
   },
   description: {
     color: Colors.textSecondary,
     fontSize: 15,
+    fontFamily: FontFamily.regular,
     lineHeight: 22,
   },
   label: {
     marginBottom: -8,
     color: Colors.textPrimary,
     fontSize: 14,
+    fontFamily: FontFamily.semibold,
     fontWeight: '600',
   },
   input: {
@@ -136,14 +136,16 @@ const styles = StyleSheet.create({
     paddingHorizontal: 14,
     borderWidth: 1,
     borderColor: Colors.border,
-    borderRadius: 11,
+    borderRadius: 14,
     backgroundColor: Colors.surface,
     color: Colors.textPrimary,
     fontSize: 16,
+    fontFamily: FontFamily.regular,
   },
   error: {
     color: Colors.danger,
     fontSize: 14,
+    fontFamily: FontFamily.medium,
     lineHeight: 20,
   },
   saveButton: {
@@ -151,12 +153,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: 16,
-    borderRadius: 11,
+    borderRadius: 14,
     backgroundColor: Colors.primary,
   },
   saveButtonText: {
     color: Colors.surface,
     fontSize: 16,
+    fontFamily: FontFamily.bold,
     fontWeight: '700',
   },
   pressed: {

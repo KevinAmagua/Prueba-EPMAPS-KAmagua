@@ -11,7 +11,7 @@ import {
 
 import { StatusAnimation } from '@/components/StatusAnimation';
 import MeterLocationMap from '@/components/MeterLocationMap';
-import { TallerColors, cardShadow } from '@/constants/taller-colors';
+import { TallerColors, FontFamily, cardShadow } from '@/constants/taller-colors';
 import { obtenerLecturaGPS } from '@/services/readings';
 
 function formatFecha(fecha) {
@@ -369,12 +369,14 @@ const styles = StyleSheet.create({
   heroBadgeText: {
     color: '#FFFFFF',
     fontSize: 11,
+    fontFamily: FontFamily.bold,
     fontWeight: '800',
     textTransform: 'uppercase',
   },
   heroLabel: {
     color: '#BFDBFE',
     fontSize: 12,
+    fontFamily: FontFamily.semibold,
     fontWeight: '700',
     textTransform: 'uppercase',
     letterSpacing: 0.6,
@@ -383,6 +385,7 @@ const styles = StyleSheet.create({
     marginTop: 5,
     color: '#FFFFFF',
     fontSize: 38,
+    fontFamily: FontFamily.bold,
     fontWeight: '800',
     fontVariant: ['tabular-nums'],
   },
@@ -390,6 +393,7 @@ const styles = StyleSheet.create({
     marginTop: 8,
     color: '#DBEAFE',
     fontSize: 14,
+    fontFamily: FontFamily.medium,
     fontWeight: '600',
   },
   card: {
@@ -401,6 +405,7 @@ const styles = StyleSheet.create({
   sectionTitle: {
     color: TallerColors.textPrimary,
     fontSize: 17,
+    fontFamily: FontFamily.bold,
     fontWeight: '800',
     marginBottom: 6,
   },
@@ -424,6 +429,7 @@ const styles = StyleSheet.create({
   infoLabel: {
     color: TallerColors.textSecondary,
     fontSize: 11.5,
+    fontFamily: FontFamily.semibold,
     fontWeight: '700',
     textTransform: 'uppercase',
     letterSpacing: 0.3,
@@ -432,6 +438,7 @@ const styles = StyleSheet.create({
     marginTop: 4,
     color: TallerColors.textPrimary,
     fontSize: 14.5,
+    fontFamily: FontFamily.medium,
     fontWeight: '600',
     lineHeight: 21,
   },
@@ -439,6 +446,7 @@ const styles = StyleSheet.create({
     marginTop: 4,
     color: TallerColors.textPrimary,
     fontSize: 13.5,
+    fontFamily: FontFamily.medium,
     lineHeight: 20,
     fontWeight: '600',
     fontVariant: ['tabular-nums'],
@@ -461,6 +469,7 @@ const styles = StyleSheet.create({
     flex: 1,
     color: TallerColors.textSecondary,
     fontSize: 13,
+    fontFamily: FontFamily.medium,
     lineHeight: 19,
     fontWeight: '600',
   },
@@ -483,6 +492,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     color: TallerColors.danger,
     fontSize: 16,
+    fontFamily: FontFamily.bold,
     fontWeight: '800',
     textAlign: 'center',
   },
@@ -490,6 +500,7 @@ const styles = StyleSheet.create({
     marginTop: 6,
     color: TallerColors.danger,
     fontSize: 13,
+    fontFamily: FontFamily.regular,
     lineHeight: 19,
     textAlign: 'center',
   },
@@ -510,6 +521,7 @@ const styles = StyleSheet.create({
   retryButtonText: {
     color: '#FFFFFF',
     fontSize: 14,
+    fontFamily: FontFamily.bold,
     fontWeight: '800',
   },
   primaryButton: {
@@ -533,6 +545,7 @@ const styles = StyleSheet.create({
   primaryButtonText: {
     color: '#FFFFFF',
     fontSize: 16,
+    fontFamily: FontFamily.bold,
     fontWeight: '800',
   },
   secondaryButton: {
@@ -552,6 +565,7 @@ const styles = StyleSheet.create({
   secondaryButtonText: {
     color: TallerColors.textPrimary,
     fontSize: 14,
+    fontFamily: FontFamily.semibold,
     fontWeight: '700',
   },
 });

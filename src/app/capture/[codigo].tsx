@@ -1,7 +1,8 @@
 import { CameraModal } from '@/components/CameraModal';
 import MeterLocationMap from '@/components/MeterLocationMap';
 import { StatusAnimation } from '@/components/StatusAnimation';
-import { Colors } from '@/constants/Colors';
+import { Ionicons } from '@expo/vector-icons';
+import { TallerColors as Colors, FontFamily, cardShadow } from '@/constants/taller-colors';
 import { useMeterForm } from '@/hooks/useMeterForm';
 import { api } from '@/services/api';
 import { enqueuePendingReading } from '@/services/syncQueue';
@@ -272,7 +273,8 @@ export default function CaptureScreen() {
     <ScrollView contentContainerStyle={styles.container}>
       {hasDraft && (
         <View style={styles.draftBanner}>
-          <Text style={styles.draftText}>📝 Se restauró un borrador previo sin enviar.</Text>
+          <Ionicons name="document-text-outline" size={18} color={Colors.primary} />
+          <Text style={styles.draftText}>Se restauró un borrador previo sin enviar.</Text>
         </View>
       )}
 
@@ -365,7 +367,7 @@ export default function CaptureScreen() {
           disabled={saving}
         >
           <Text style={styles.photoButtonText}>
-            {formState.fotoUri ? '📷 Cambiar Fotografía' : '📸 Tomar Fotografía'}
+            {formState.fotoUri ? 'Cambiar fotografía' : 'Tomar fotografía'}
           </Text>
         </TouchableOpacity>
 
@@ -407,7 +409,10 @@ export default function CaptureScreen() {
           {saving ? (
             <ActivityIndicator color="#FFFFFF" />
           ) : (
-            <Text style={styles.saveButtonText}>Guardar Lectura</Text>
+            <>
+              <Ionicons name="save-outline" size={19} color="#FFFFFF" />
+              <Text style={styles.saveButtonText}>Guardar lectura</Text>
+            </>
           )}
         </TouchableOpacity>
       </View>
@@ -440,6 +445,10 @@ const styles = StyleSheet.create({
     flexGrow: 1,
   },
   draftBanner: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 9,
     backgroundColor: '#FFF9E5',
     borderWidth: 1,
     borderColor: '#E8D891',
@@ -450,8 +459,10 @@ const styles = StyleSheet.create({
   draftText: {
     color: Colors.textPrimary,
     fontSize: 14,
+    fontFamily: FontFamily.semibold,
     fontWeight: '700',
-    textAlign: 'center',
+    flexShrink: 1,
+    textAlign: 'left',
     lineHeight: 20,
   },
   mapWrapper: {
@@ -459,29 +470,28 @@ const styles = StyleSheet.create({
   },
   card: {
     backgroundColor: Colors.surface,
-    borderRadius: 16,
-    padding: 20,
+    borderRadius: 20,
+    padding: 22,
     marginBottom: 18,
-    shadowColor: '#1A2530',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.08,
-    shadowRadius: 8,
-    elevation: 2,
+    ...cardShadow,
   },
   cardTitle: {
     fontSize: 19,
+    fontFamily: FontFamily.bold,
     fontWeight: '700',
     color: Colors.primary,
     marginBottom: 10,
   },
   cardText: {
     fontSize: 15,
+    fontFamily: FontFamily.regular,
     color: Colors.textSecondary,
     lineHeight: 22,
     marginBottom: 6,
   },
   label: {
     fontSize: 14,
+    fontFamily: FontFamily.semibold,
     fontWeight: '700',
     color: Colors.textPrimary,
     marginTop: 16,
@@ -498,7 +508,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 4,
     borderWidth: 1,
     borderColor: Colors.border,
-    borderRadius: 10,
+    borderRadius: 13,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: Colors.surface,
@@ -509,6 +519,7 @@ const styles = StyleSheet.create({
   },
   statusButtonText: {
     fontSize: 12,
+    fontFamily: FontFamily.bold,
     fontWeight: '700',
     color: Colors.textPrimary,
     textAlign: 'center',
@@ -517,12 +528,13 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
   },
   input: {
-    minHeight: 60,
+    minHeight: 64,
     borderWidth: 1,
     borderColor: Colors.border,
-    borderRadius: 12,
+    borderRadius: 14,
     paddingHorizontal: 16,
-    fontSize: 24,
+    fontSize: 25,
+    fontFamily: FontFamily.bold,
     fontWeight: '700',
     textAlign: 'center',
     backgroundColor: Colors.surface,
@@ -533,11 +545,13 @@ const styles = StyleSheet.create({
     paddingTop: 14,
     textAlignVertical: 'top',
     fontSize: 16,
+    fontFamily: FontFamily.regular,
     fontWeight: '400',
     textAlign: 'left',
   },
   calcText: {
     fontSize: 14,
+    fontFamily: FontFamily.semibold,
     fontWeight: '600',
     color: Colors.primary,
     backgroundColor: '#EEF2FA',
@@ -558,27 +572,30 @@ const styles = StyleSheet.create({
     color: Colors.danger,
     fontWeight: '700',
     fontSize: 14,
+    fontFamily: FontFamily.bold,
     marginBottom: 6,
   },
   warningText: {
     color: Colors.danger,
     fontSize: 14,
+    fontFamily: FontFamily.medium,
     lineHeight: 20,
   },
   photoButton: {
     minHeight: 56,
     borderWidth: 1,
     borderColor: Colors.secondary,
-    borderRadius: 12,
+    borderRadius: 14,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#EEF3FC',
+    backgroundColor: '#EFF6FF',
     marginTop: 6,
     paddingHorizontal: 12,
   },
   photoButtonText: {
     color: Colors.primary,
     fontSize: 15,
+    fontFamily: FontFamily.bold,
     fontWeight: '700',
     textAlign: 'center',
   },
@@ -594,6 +611,7 @@ const styles = StyleSheet.create({
   removePhotoButtonText: {
     color: Colors.danger,
     fontSize: 14,
+    fontFamily: FontFamily.semibold,
     fontWeight: '700',
   },
   previewImage: {
@@ -606,6 +624,7 @@ const styles = StyleSheet.create({
   requiredPhotoText: {
     color: Colors.danger,
     fontSize: 14,
+    fontFamily: FontFamily.semibold,
     fontWeight: '700',
     marginTop: 14,
     lineHeight: 20,
@@ -621,12 +640,15 @@ const styles = StyleSheet.create({
   saveErrorText: {
     color: Colors.danger,
     fontSize: 14,
+    fontFamily: FontFamily.medium,
     lineHeight: 20,
   },
   saveButton: {
     minHeight: 60,
+    flexDirection: 'row',
+    gap: 9,
     backgroundColor: Colors.primary,
-    borderRadius: 12,
+    borderRadius: 15,
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 24,
@@ -642,6 +664,7 @@ const styles = StyleSheet.create({
   saveButtonText: {
     color: '#FFFFFF',
     fontSize: 17,
+    fontFamily: FontFamily.bold,
     fontWeight: '700',
   },
 });

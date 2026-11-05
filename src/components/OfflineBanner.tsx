@@ -3,6 +3,7 @@ import { StyleSheet, View, Text } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useNetworkStatus } from '@/hooks/useNetworkStatus';
 import { Colors } from '@/constants/Colors';
+import { FontFamily } from '@/constants/taller-colors';
 
 /**
  * Indicador global permanente de conectividad y lecturas pendientes.
@@ -54,6 +55,7 @@ const styles = StyleSheet.create({
   text: {
     color: '#FFFFFF',
     fontSize: 14,
+    fontFamily: FontFamily.semibold,
     fontWeight: '700',
     textAlign: 'left',
     lineHeight: 20,

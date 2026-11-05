@@ -1,7 +1,7 @@
 import LottieView from 'lottie-react-native';
 import { Modal, StyleSheet, Text, View } from 'react-native';
 
-import { TallerColors, cardShadow } from '@/constants/taller-colors';
+import { TallerColors, FontFamily, cardShadow } from '@/constants/taller-colors';
 
 type StatusVariant = 'loading' | 'success';
 
@@ -78,6 +78,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     color: TallerColors.textPrimary,
     fontSize: 19,
+    fontFamily: FontFamily.bold,
     fontWeight: '800',
     textAlign: 'center',
   },
@@ -85,6 +86,7 @@ const styles = StyleSheet.create({
     marginTop: 8,
     color: TallerColors.textSecondary,
     fontSize: 14,
+    fontFamily: FontFamily.regular,
     lineHeight: 20,
     textAlign: 'center',
   },

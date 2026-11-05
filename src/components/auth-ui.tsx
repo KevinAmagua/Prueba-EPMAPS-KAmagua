@@ -1,11 +1,3 @@
-import { BigShoulders_700Bold } from '@expo-google-fonts/big-shoulders';
-import {
-  SpaceGrotesk_400Regular,
-  SpaceGrotesk_500Medium,
-  SpaceGrotesk_600SemiBold,
-  SpaceGrotesk_700Bold,
-} from '@expo-google-fonts/space-grotesk';
-import { useFonts } from 'expo-font';
 import { useEffect, useState, type PropsWithChildren } from 'react';
 import {
   ActivityIndicator,
@@ -49,13 +41,6 @@ export function AuthScreen({
   children,
 }: AuthScreenProps) {
   const [keyboardVisible, setKeyboardVisible] = useState(false);
-  const [, fontError] = useFonts({
-    BigShoulders_700Bold,
-    SpaceGrotesk_400Regular,
-    SpaceGrotesk_500Medium,
-    SpaceGrotesk_600SemiBold,
-    SpaceGrotesk_700Bold,
-  });
   const shake = useSharedValue(0);
   const animatedStyle = useAnimatedStyle(() => ({
     transform: [{ translateX: shake.get() }],
@@ -86,10 +71,6 @@ export function AuthScreen({
       );
     }
   }, [shake, shakeKey]);
-
-  if (fontError) {
-    throw fontError;
-  }
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -288,8 +269,8 @@ const styles = StyleSheet.create({
     maxWidth: 460,
     alignSelf: 'center',
     alignItems: 'center',
-    padding: 24,
-    borderRadius: 20,
+    padding: 26,
+    borderRadius: 24,
     backgroundColor: Colors.surface,
     shadowColor: '#101828',
     shadowOpacity: 0.08,
@@ -309,30 +290,30 @@ const styles = StyleSheet.create({
   },
   title: {
     alignSelf: 'stretch',
-    marginTop: 8,
+    marginTop: 10,
     color: Colors.textPrimary,
-    fontSize: 27,
+    fontSize: 28,
     fontFamily: 'SpaceGrotesk_700Bold',
   },
   subtitle: {
     alignSelf: 'stretch',
     marginTop: 8,
     color: Colors.textSecondary,
-    fontSize: 15,
+    fontSize: 15.5,
     fontFamily: 'SpaceGrotesk_400Regular',
     lineHeight: 22,
   },
   form: {
     width: '100%',
-    gap: 16,
-    marginTop: 26,
+    gap: 18,
+    marginTop: 28,
   },
   formWithKeyboard: {
     marginTop: 12,
     gap: 12,
   },
   inputGroup: {
-    gap: 7,
+    gap: 8,
   },
   label: {
     color: Colors.textPrimary,
@@ -347,34 +328,34 @@ const styles = StyleSheet.create({
     fontFamily: 'SpaceGrotesk_400Regular',
   },
   inputContainer: {
-    minHeight: 50,
+    minHeight: 56,
     justifyContent: 'center',
     borderWidth: 1,
     borderColor: Colors.border,
-    borderRadius: 11,
+    borderRadius: 14,
     backgroundColor: Colors.surface,
   },
   secureInputContainer: {
-    minHeight: 50,
+    minHeight: 56,
     flexDirection: 'row',
     alignItems: 'center',
     paddingLeft: 14,
     paddingRight: 4,
     borderWidth: 1,
     borderColor: Colors.border,
-    borderRadius: 11,
+    borderRadius: 14,
     backgroundColor: Colors.surface,
   },
   secureInput: {
     flex: 1,
-    minHeight: 48,
+    minHeight: 54,
     paddingHorizontal: 0,
     borderWidth: 0,
     backgroundColor: 'transparent',
   },
   passwordToggle: {
     minWidth: 68,
-    minHeight: 48,
+    minHeight: 52,
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: 8,
@@ -385,11 +366,11 @@ const styles = StyleSheet.create({
     fontFamily: 'SpaceGrotesk_600SemiBold',
   },
   button: {
-    minHeight: 50,
+    minHeight: 56,
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: 16,
-    borderRadius: 11,
+    borderRadius: 14,
     backgroundColor: Colors.primary,
   },
   secondaryButton: {
@@ -414,6 +395,7 @@ const styles = StyleSheet.create({
   feedback: {
     alignSelf: 'stretch',
     fontSize: 14,
+    lineHeight: 21,
     fontFamily: 'SpaceGrotesk_400Regular',
     lineHeight: 20,
   },
