@@ -13,7 +13,7 @@ import { StatusBar } from 'expo-status-bar';
 import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 
 import { OfflineBanner } from '@/components/OfflineBanner';
-import { COLORES_CURVAS_DE_NIVEL, CurvasDeNivel } from '@/components/curvas-de-nivel';
+import { CurvasDeNivel } from '@/components/curvas-de-nivel';
 import { Colors } from '@/constants/Colors';
 import { SesionProvider, useSesion } from '@/context/sesion';
 import { obtenerMensajeErrorFirebase } from '@/lib/errores-firebase';

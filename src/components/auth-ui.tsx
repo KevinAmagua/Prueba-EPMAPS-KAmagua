@@ -395,7 +395,6 @@ const styles = StyleSheet.create({
   feedback: {
     alignSelf: 'stretch',
     fontSize: 14,
-    lineHeight: 21,
     fontFamily: 'SpaceGrotesk_400Regular',
     lineHeight: 20,
   },

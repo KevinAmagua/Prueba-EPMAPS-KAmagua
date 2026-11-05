@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import { CameraView, useCameraPermissions } from 'expo-camera';
 import { Colors } from '@/constants/Colors';
+import { FontFamily, cardShadow } from '@/constants/taller-colors';
 
 interface CameraModalProps {
   /** Controla si el modal está abierto. */
@@ -40,16 +41,28 @@ export function CameraModal({ visible, onClose, onCapture, isMandatory = false }
             <Text style={styles.permissionText}>
               EPMAPS requiere acceso a la cámara para adjuntar la evidencia fotográfica obligatoria en este registro (consumo anómalo o medidor dañado).
             </Text>
-            <TouchableOpacity style={styles.primaryButton} onPress={requestPermission}>
+            <TouchableOpacity
+              style={styles.primaryButton}
+              onPress={requestPermission}
+              accessibilityRole="button"
+              accessibilityLabel="Conceder permiso para usar la cámara">
               <Text style={styles.buttonText}>Conceder Permiso</Text>
             </TouchableOpacity>
             {!isMandatory && (
-              <TouchableOpacity style={styles.secondaryButton} onPress={onClose}>
+              <TouchableOpacity
+                style={styles.secondaryButton}
+                onPress={onClose}
+                accessibilityRole="button"
+                accessibilityLabel="Continuar sin tomar una fotografía">
                 <Text style={styles.secondaryButtonText}>Continuar sin Foto</Text>
               </TouchableOpacity>
             )}
             {isMandatory && (
-              <TouchableOpacity style={styles.cancelButton} onPress={onClose}>
+              <TouchableOpacity
+                style={styles.cancelButton}
+                onPress={onClose}
+                accessibilityRole="button"
+                accessibilityLabel="Cancelar y cerrar la cámara">
                 <Text style={styles.cancelButtonText}>Cancelar</Text>
               </TouchableOpacity>
             )}
@@ -94,7 +107,11 @@ export function CameraModal({ visible, onClose, onCapture, isMandatory = false }
             </View>
 
             <View style={styles.footer}>
-              <TouchableOpacity style={styles.closeButton} onPress={onClose}>
+              <TouchableOpacity
+                style={styles.closeButton}
+                onPress={onClose}
+                accessibilityRole="button"
+                accessibilityLabel="Cancelar y cerrar la cámara">
                 <Text style={styles.buttonText}>Cancelar</Text>
               </TouchableOpacity>
 
@@ -102,6 +119,8 @@ export function CameraModal({ visible, onClose, onCapture, isMandatory = false }
                 style={[styles.captureButton, capturing && styles.disabledButton]}
                 onPress={takePicture}
                 disabled={capturing}
+                accessibilityRole="button"
+                accessibilityLabel={capturing ? 'Tomando fotografía' : 'Tomar fotografía'}
               >
                 {capturing ? (
                   <ActivityIndicator color="#FFFFFF" />
@@ -142,6 +161,7 @@ const styles = StyleSheet.create({
   headerText: {
     color: '#FFFFFF',
     fontSize: 16,
+    fontFamily: FontFamily.bold,
     fontWeight: '700',
     flexShrink: 1,
     marginRight: 8,
@@ -153,7 +173,7 @@ const styles = StyleSheet.create({
     paddingVertical: 7,
     borderRadius: 8,
     fontSize: 12,
-    fontWeight: '700',
+    fontFamily: FontFamily.bold,
   },
   footer: {
     flexDirection: 'row',
@@ -204,16 +224,18 @@ const styles = StyleSheet.create({
     width: '100%',
     maxWidth: 380,
     alignItems: 'center',
+    ...cardShadow,
   },
   permissionTitle: {
     fontSize: 18,
-    fontWeight: 'bold',
+    fontFamily: FontFamily.bold,
     color: Colors.primary,
     marginBottom: 12,
     textAlign: 'center',
   },
   permissionText: {
     fontSize: 14,
+    fontFamily: FontFamily.regular,
     color: Colors.textSecondary,
     textAlign: 'center',
     marginBottom: 24,
@@ -248,16 +270,16 @@ const styles = StyleSheet.create({
   buttonText: {
     color: '#FFFFFF',
     fontSize: 15,
-    fontWeight: 'bold',
+    fontFamily: FontFamily.bold,
   },
   secondaryButtonText: {
     color: Colors.textPrimary,
     fontSize: 15,
-    fontWeight: '600',
+    fontFamily: FontFamily.semibold,
   },
   cancelButtonText: {
     color: '#FFFFFF',
     fontSize: 15,
-    fontWeight: 'bold',
+    fontFamily: FontFamily.bold,
   },
 });
