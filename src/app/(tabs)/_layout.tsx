@@ -19,9 +19,9 @@ export default function TabsLayout() {
           paddingBottom: 12,
           paddingTop: 10,
           elevation: 10,
-          shadowColor: '#1A2530',
+          shadowColor: Colors.secondary,
           shadowOffset: { width: 0, height: -3 },
-          shadowOpacity: 0.06,
+          shadowOpacity: 0.12,
           shadowRadius: 8,
         },
         tabBarLabelStyle: {
@@ -30,7 +30,7 @@ export default function TabsLayout() {
           fontWeight: '600',
         },
         tabBarItemStyle: { minHeight: 50 },
-        headerStyle: { backgroundColor: Colors.primary },
+        headerStyle: { backgroundColor: Colors.secondary },
         headerTintColor: '#FFFFFF',
         headerTitleStyle: {
           fontSize: 17,

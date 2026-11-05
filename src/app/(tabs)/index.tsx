@@ -60,9 +60,23 @@ export default function MeterSearchScreen() {
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.headerCard}>
-        <Text style={styles.eyebrow}>REGISTRO EN CAMPO</Text>
-        <Text style={styles.title}>Búsqueda de Medidor</Text>
-        <Text style={styles.subtitle}>Ingrese el código asignado en campo (MED-XXXXXX)</Text>
+        <View style={styles.heroBrandRow}>
+          <View style={styles.heroBrandMark}>
+            <Ionicons name="water-outline" size={23} color={Colors.surface} />
+          </View>
+          <Text style={styles.heroBrand}>EPMAPS <Text style={styles.heroBrandDetail}>/ OPERACIONES</Text></Text>
+          <View style={styles.heroWaterArt} accessible={false}>
+            <View style={styles.heroWaterRing}>
+              <View style={styles.heroWaterCore}>
+                <Ionicons name="water" size={27} color={Colors.surface} />
+              </View>
+            </View>
+          </View>
+        </View>
+        <Text style={styles.title}>Gestión de lecturas</Text>
+        <Text style={styles.subtitle}>
+          Control preciso del consumo, desde el medidor hasta el registro.
+        </Text>
       </View>
 
       <View style={styles.searchCard}>
@@ -70,7 +84,7 @@ export default function MeterSearchScreen() {
         <TextInput
           style={[styles.input, errorValidacion ? styles.inputError : null]}
           placeholder="MED-000000"
-          placeholderTextColor="#8C9BA5"
+          placeholderTextColor={Colors.textSecondary}
           value={codigoBusqueda}
           onChangeText={(text) => {
             setCodigoBusqueda(text);
@@ -150,29 +164,83 @@ const styles = StyleSheet.create({
     flexGrow: 1,
   },
   headerCard: {
-    marginBottom: 14,
-    paddingHorizontal: 2,
-    paddingVertical: 12,
+    minHeight: 208,
+    justifyContent: 'flex-end',
+    overflow: 'hidden',
+    marginBottom: 20,
+    padding: 22,
+    borderRadius: 24,
+    backgroundColor: Colors.secondary,
+    ...cardShadow,
   },
-  eyebrow: {
-    marginBottom: 8,
-    color: Colors.secondary,
-    fontSize: 11,
+  heroBrandRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 24,
+  },
+  heroBrandMark: {
+    width: 38,
+    height: 38,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginRight: 10,
+    borderRadius: 13,
+    backgroundColor: Colors.primary,
+  },
+  heroBrand: {
+    color: Colors.surface,
+    fontSize: 15,
     fontFamily: FontFamily.bold,
+    letterSpacing: 0.6,
+  },
+  heroBrandDetail: {
+    color: Colors.surface,
+    fontSize: 10,
+    fontFamily: FontFamily.medium,
     letterSpacing: 1.1,
   },
+  heroWaterArt: {
+    position: 'absolute',
+    top: -54,
+    right: -44,
+    width: 152,
+    height: 152,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 76,
+    borderWidth: 1,
+    borderColor: Colors.primary,
+  },
+  heroWaterRing: {
+    width: 104,
+    height: 104,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 52,
+    borderWidth: 1,
+    borderColor: Colors.primary,
+  },
+  heroWaterCore: {
+    width: 62,
+    height: 62,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 31,
+    backgroundColor: Colors.primary,
+  },
   title: {
-    fontSize: 24,
-    fontFamily: FontFamily.bold,
-    fontWeight: '700',
-    color: Colors.primary,
+    fontSize: 30,
+    fontFamily: FontFamily.display,
+    color: Colors.surface,
   },
   subtitle: {
-    fontSize: 15,
+    maxWidth: 275,
+    fontSize: 14,
     fontFamily: FontFamily.regular,
-    color: Colors.textSecondary,
-    marginTop: 7,
-    lineHeight: 21,
+    color: Colors.surface,
+    marginTop: 5,
+    lineHeight: 20,
+    opacity: 0.88,
   },
   searchCard: {
     backgroundColor: Colors.surface,
@@ -232,7 +300,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: 12,
-    backgroundColor: '#EFF6FF',
+    backgroundColor: Colors.surface,
     borderWidth: 1,
     borderColor: Colors.border,
     borderRadius: 16,
@@ -246,13 +314,13 @@ const styles = StyleSheet.create({
     borderRadius: 14,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#DBEAFE',
+    backgroundColor: Colors.background,
   },
   historyCopy: {
     flex: 1,
   },
   gpsHistoryTitle: {
-    color: Colors.primary,
+    color: Colors.textPrimary,
     fontSize: 15,
     fontFamily: FontFamily.bold,
     fontWeight: '700',
@@ -265,9 +333,10 @@ const styles = StyleSheet.create({
     marginTop: 5,
   },
   infoCard: {
-    backgroundColor: '#FFFBEB',
+    backgroundColor: Colors.surface,
     borderWidth: 1,
-    borderColor: '#FDE68A',
+    borderLeftWidth: 4,
+    borderColor: Colors.primary,
     borderRadius: 14,
     padding: 18,
     marginBottom: 16,
@@ -286,10 +355,15 @@ const styles = StyleSheet.create({
     ...cardShadow,
   },
   resultTitle: {
+    alignSelf: 'flex-start',
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    borderRadius: 10,
+    backgroundColor: Colors.success,
     fontSize: 19,
     fontFamily: FontFamily.bold,
     fontWeight: '700',
-    color: Colors.success,
+    color: Colors.successText,
     marginBottom: 16,
   },
   resultText: {

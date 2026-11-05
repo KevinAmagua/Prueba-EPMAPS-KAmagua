@@ -1,20 +1,21 @@
 /** Paleta semántica institucional usada por las pantallas de campo EPMAPS. */
 
 export const Colors = {
-  primary: '#1E40AF',
-  secondary: '#2563EB',
-  background: '#F8FAFC',
+  primary: '#357ca5',
+  secondary: '#001F3F',
+  background: '#e2e4e9',
   surface: '#FFFFFF',
-  textPrimary: '#1E293B',
-  textSecondary: '#64748B',
-  danger: '#DC2626',
-  success: '#047857',
-  border: '#E2E8F0',
-  warning: '#F59E0B',
-  process: '#EF6C00',
-  analytics: '#7B1FA2',
-  special: '#C2185B',
-  info: '#64B5F6',
+  textPrimary: '#111111',
+  textSecondary: '#001F3F',
+  danger: '#d33724',
+  success: '#5ac594',
+  border: '#b5bbc8',
+  warning: '#f7bf65',
+  process: '#357ca5',
+  analytics: '#001F3F',
+  special: '#d33724',
+  info: '#357ca5',
+  successText: '#111111',
 } as const;
 
 export type EpmapsColorKey = keyof typeof Colors;

@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
     maxWidth: 320,
     alignItems: 'center',
     backgroundColor: TallerColors.surface,
-    borderRadius: 20,
+    borderRadius: 22,
     paddingHorizontal: 26,
     paddingTop: 32,
     paddingBottom: 28,
@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
     backgroundColor: TallerColors.softSuccess,
   },
   checkText: {
-    color: TallerColors.success,
+    color: TallerColors.successText,
     fontSize: 44,
     fontWeight: '800',
   },

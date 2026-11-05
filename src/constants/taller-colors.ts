@@ -2,28 +2,29 @@
  * Tokens visuales compartidos por las pantallas de campo, mapas y estados.
  */
 export const TallerColors = {
-  brand: '#1E40AF',
-  accent: '#3B82F6',
-  success: '#047857',
-  background: '#F8FAFC',
+  brand: '#001F3F',
+  accent: '#357ca5',
+  success: '#5ac594',
+  background: '#e2e4e9',
   surface: '#FFFFFF',
-  textPrimary: '#1E293B',
-  textSecondary: '#64748B',
-  border: '#E2E8F0',
-  danger: '#DC2626',
-  warning: '#F59E0B',
-  softBrand: '#DBEAFE',
-  softSuccess: '#D1FAE5',
-  softDanger: '#FEE2E2',
-  overlay: 'rgba(15, 23, 42, 0.55)',
+  textPrimary: '#111111',
+  textSecondary: '#001F3F',
+  border: '#b5bbc8',
+  danger: '#d33724',
+  warning: '#f7bf65',
+  softBrand: '#e2e4e9',
+  softSuccess: '#5ac594',
+  softDanger: '#FFFFFF',
+  successText: '#111111',
+  overlay: 'rgba(0, 31, 63, 0.62)',
 } as const;
 
 export const cardShadow = {
-  shadowColor: '#0F172A',
+  shadowColor: '#001F3F',
   shadowOffset: { width: 0, height: 3 },
-  shadowOpacity: 0.08,
-  shadowRadius: 10,
-  elevation: 3,
+  shadowOpacity: 0.14,
+  shadowRadius: 12,
+  elevation: 4,
 } as const;
 
 export const FontFamily = {

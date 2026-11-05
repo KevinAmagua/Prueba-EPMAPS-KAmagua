@@ -31,12 +31,12 @@ const MAP_HTML = `<!DOCTYPE html>
       width: 100%;
       margin: 0;
       padding: 0;
-      background: #E2E8F0;
+      background: #e2e4e9;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     }
     .leaflet-control-attribution {
       font-size: 9px;
-      background: rgba(255, 255, 255, 0.82);
+      background: #FFFFFF;
     }
     .meter-pin {
       background: transparent;
@@ -48,9 +48,9 @@ const MAP_HTML = `<!DOCTYPE html>
       height: 30px;
       border-radius: 50% 50% 50% 0;
       transform: rotate(-45deg);
-      background: #1E40AF;
+      background: #357ca5;
       border: 3px solid #FFFFFF;
-      box-shadow: 0 5px 14px rgba(15, 23, 42, 0.4);
+      box-shadow: 0 5px 14px rgba(0, 31, 63, 0.4);
       box-sizing: border-box;
     }
     .meter-pin__dot {
@@ -70,11 +70,11 @@ const MAP_HTML = `<!DOCTYPE html>
       align-items: center;
       justify-content: center;
       padding: 24px;
-      color: #1E293B;
+      color: #111111;
       font-size: 14px;
       line-height: 20px;
       text-align: center;
-      background: #F8FAFC;
+      background: #e2e4e9;
     }
   </style>
 </head>
@@ -470,7 +470,7 @@ export default function MeterLocationMap({
           <Ionicons
             name={readOnly ? 'location' : isManual ? 'hand-left' : 'navigate'}
             size={13}
-            color={isManual ? TallerColors.warning : TallerColors.brand}
+            color={isManual ? TallerColors.textPrimary : TallerColors.brand}
           />
           <Text style={[styles.badgeText, isManual ? styles.badgeTextManual : styles.badgeTextGps]}>
             {readOnly ? 'Guardada' : isManual ? 'Manual' : 'GPS'}
@@ -605,7 +605,7 @@ const styles = StyleSheet.create({
     backgroundColor: TallerColors.softBrand,
   },
   badgeManual: {
-    backgroundColor: '#FEF3C7',
+    backgroundColor: TallerColors.warning,
   },
   badgeText: {
     fontSize: 11,
@@ -615,10 +615,10 @@ const styles = StyleSheet.create({
     letterSpacing: 0.3,
   },
   badgeTextGps: {
-    color: TallerColors.brand,
+    color: TallerColors.textPrimary,
   },
   badgeTextManual: {
-    color: '#92400E',
+    color: TallerColors.textPrimary,
   },
   toggle: {
     flexDirection: 'row',
@@ -653,13 +653,13 @@ const styles = StyleSheet.create({
   mapContainer: {
     borderRadius: 16,
     overflow: 'hidden',
-    backgroundColor: '#E2E8F0',
+    backgroundColor: TallerColors.background,
     borderWidth: 1,
     borderColor: TallerColors.border,
   },
   webview: {
     flex: 1,
-    backgroundColor: '#E2E8F0',
+    backgroundColor: TallerColors.background,
   },
   mapOverlay: {
     position: 'absolute',
@@ -671,7 +671,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     gap: 10,
     paddingHorizontal: 26,
-    backgroundColor: 'rgba(248, 250, 252, 0.86)',
+    backgroundColor: TallerColors.background,
   },
   mapOverlayText: {
     color: TallerColors.textPrimary,
@@ -685,7 +685,7 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     gap: 8,
     marginTop: 12,
-    backgroundColor: TallerColors.softDanger,
+    backgroundColor: TallerColors.surface,
     borderRadius: 10,
     padding: 11,
   },

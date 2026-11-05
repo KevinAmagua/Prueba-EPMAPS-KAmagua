@@ -6,7 +6,6 @@ import {
   Text,
   FlatList,
   TouchableOpacity,
-  Alert,
   Image,
   RefreshControl,
 } from 'react-native';
@@ -16,6 +15,7 @@ import { FontFamily, cardShadow } from '@/constants/taller-colors';
 import { PendingSyncItem } from '@/types/medidor';
 import { processSyncQueue } from '@/services/syncQueue';
 import { router, useFocusEffect } from 'expo-router';
+import { useStyledAlert } from '@/components/StyledAlert';
 
 const SYNC_QUEUE_KEY = '@sync_queue';
 
@@ -23,6 +23,7 @@ const SYNC_QUEUE_KEY = '@sync_queue';
 export default function PendingReadingsScreen() {
   const [pendientes, setPendientes] = useState<PendingSyncItem[]>([]);
   const [refreshing, setRefreshing] = useState(false);
+  const showAlert = useStyledAlert();
 
   /**
    * Lee y convierte la cola persistida para mantener la lista sincronizada
@@ -65,18 +66,18 @@ export default function PendingReadingsScreen() {
       const queue = await loadPendingReadings();
       const pendientesActuales = queue.filter((item) => !item.sincronizado);
       if (pendientesActuales.length === 0) {
-        Alert.alert('Sincronización completada', 'Todas las lecturas pendientes se enviaron correctamente.');
+        showAlert('Sincronización completada', 'Todas las lecturas pendientes se enviaron correctamente.');
       } else {
         const ultimoError = pendientesActuales.find((item) => item.ultimoError)?.ultimoError;
         const detalle = ultimoError ? `\n\nDetalle: ${ultimoError}` : '';
-        Alert.alert(
+        showAlert(
           'Lecturas aún pendientes',
           `${pendientesActuales.length} lectura(s) siguen guardadas en el dispositivo y no pudieron enviarse.${detalle}`
         );
       }
     } catch (error) {
       const detail = error instanceof Error ? error.message : 'Error desconocido.';
-      Alert.alert('No se pudo sincronizar', `No fue posible procesar o revisar la cola local. ${detail}`);
+      showAlert('No se pudo sincronizar', `No fue posible procesar o revisar la cola local. ${detail}`);
     } finally {
       setRefreshing(false);
     }
@@ -90,7 +91,7 @@ export default function PendingReadingsScreen() {
    */
   const handleEdit = (item: PendingSyncItem) => {
     if (item.sincronizado) {
-      Alert.alert('Acción No Permitida', 'Esta lectura ya fue enviada al servidor y no puede ser modificada.');
+      showAlert('Acción no permitida', 'Esta lectura ya fue enviada al servidor y no puede ser modificada.');
       return;
     }
     router.push(`/capture/${item.lectura.codigoMedidor}`);
@@ -109,11 +110,11 @@ export default function PendingReadingsScreen() {
         <View style={styles.rowHeader}>
           <Text style={styles.itemTitle}>Medidor: {item.lectura.codigoMedidor}</Text>
           <View style={[styles.badge, { backgroundColor: item.sincronizado ? Colors.success : Colors.warning }]}>
-            <Text style={[styles.badgeText, !item.sincronizado && styles.pendingBadgeText]}>
+            <Text style={styles.badgeText}>
               <Ionicons
                 name={item.sincronizado ? 'checkmark-circle' : 'time-outline'}
                 size={14}
-                color={item.sincronizado ? '#FFFFFF' : Colors.textPrimary}
+                color={Colors.textPrimary}
               />{' '}
               {item.sincronizado ? 'Enviada' : 'Pendiente'}
             </Text>
@@ -263,7 +264,7 @@ const styles = StyleSheet.create({
     fontSize: 22,
     fontFamily: FontFamily.bold,
     fontWeight: '700',
-    color: Colors.primary,
+    color: Colors.secondary,
   },
   statLabel: {
     fontSize: 12,
@@ -318,13 +319,10 @@ const styles = StyleSheet.create({
     borderRadius: 20,
   },
   badgeText: {
-    color: '#FFFFFF',
+    color: Colors.textPrimary,
     fontSize: 12,
     fontFamily: FontFamily.bold,
     fontWeight: '700',
-  },
-  pendingBadgeText: {
-    color: Colors.textPrimary,
   },
   itemText: {
     fontSize: 15,

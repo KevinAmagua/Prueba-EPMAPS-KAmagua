@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import { CameraView, useCameraPermissions } from 'expo-camera';
 import { Colors } from '@/constants/Colors';
-import { FontFamily, cardShadow } from '@/constants/taller-colors';
+import { FontFamily, TallerColors, cardShadow } from '@/constants/taller-colors';
 
 interface CameraModalProps {
   /** Controla si el modal está abierto. */
@@ -139,7 +139,7 @@ export function CameraModal({ visible, onClose, onCapture, isMandatory = false }
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#000000',
+    backgroundColor: Colors.textPrimary,
   },
   camera: {
     flex: 1,
@@ -156,7 +156,7 @@ const styles = StyleSheet.create({
     marginTop: 28,
     padding: 14,
     borderRadius: 14,
-    backgroundColor: 'rgba(15,28,48,0.72)',
+    backgroundColor: Colors.secondary,
   },
   headerText: {
     color: '#FFFFFF',
@@ -182,14 +182,14 @@ const styles = StyleSheet.create({
     marginBottom: 24,
     padding: 16,
     borderRadius: 18,
-    backgroundColor: 'rgba(15,28,48,0.72)',
+    backgroundColor: Colors.secondary,
   },
   closeButton: {
     minHeight: 48,
     justifyContent: 'center',
     paddingVertical: 12,
     paddingHorizontal: 22,
-    backgroundColor: 'rgba(255,255,255,0.2)',
+    backgroundColor: Colors.primary,
     borderRadius: 12,
   },
   captureButton: {
@@ -212,14 +212,14 @@ const styles = StyleSheet.create({
   },
   modalOverlay: {
     flex: 1,
-    backgroundColor: 'rgba(0,0,0,0.6)',
+    backgroundColor: TallerColors.overlay,
     justifyContent: 'center',
     alignItems: 'center',
     padding: 24,
   },
   permissionContainer: {
     backgroundColor: Colors.surface,
-    borderRadius: 18,
+    borderRadius: 22,
     padding: 26,
     width: '100%',
     maxWidth: 380,
@@ -253,7 +253,7 @@ const styles = StyleSheet.create({
   secondaryButton: {
     width: '100%',
     minHeight: 52,
-    backgroundColor: '#EAEAEA',
+    backgroundColor: Colors.background,
     borderRadius: 12,
     justifyContent: 'center',
     alignItems: 'center',

@@ -118,10 +118,10 @@ export default function MeterDetailScreen({
         <View style={styles.heroCard}>
           <View style={styles.heroTopRow}>
             <View style={styles.heroIcon}>
-              <Ionicons name="checkmark-done-outline" size={24} color={TallerColors.success} />
+              <Ionicons name="checkmark-done-outline" size={24} color={TallerColors.successText} />
             </View>
             <View style={styles.heroBadge}>
-              <Ionicons name="cloud-done-outline" size={13} color={TallerColors.success} />
+              <Ionicons name="cloud-done-outline" size={13} color={TallerColors.successText} />
               <Text style={styles.heroBadgeText}>MockAPI</Text>
             </View>
           </View>
@@ -198,8 +198,8 @@ export default function MeterDetailScreen({
                     size={17}
                     color={location
                       ? reading.isManualLocation
-                        ? TallerColors.warning
-                        : TallerColors.success
+                        ? TallerColors.textPrimary
+                        : TallerColors.successText
                       : TallerColors.textSecondary}
                   />
                 </View>
@@ -355,7 +355,7 @@ const styles = StyleSheet.create({
     borderRadius: 14,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'rgba(255, 255, 255, 0.16)',
+    backgroundColor: TallerColors.accent,
   },
   heroBadge: {
     flexDirection: 'row',
@@ -364,7 +364,7 @@ const styles = StyleSheet.create({
     borderRadius: 999,
     paddingHorizontal: 10,
     paddingVertical: 6,
-    backgroundColor: 'rgba(255, 255, 255, 0.16)',
+    backgroundColor: TallerColors.accent,
   },
   heroBadgeText: {
     color: '#FFFFFF',
@@ -374,7 +374,7 @@ const styles = StyleSheet.create({
     textTransform: 'uppercase',
   },
   heroLabel: {
-    color: '#BFDBFE',
+    color: TallerColors.surface,
     fontSize: 12,
     fontFamily: FontFamily.semibold,
     fontWeight: '700',
@@ -391,7 +391,7 @@ const styles = StyleSheet.create({
   },
   heroMeterId: {
     marginTop: 8,
-    color: '#DBEAFE',
+    color: TallerColors.surface,
     fontSize: 14,
     fontFamily: FontFamily.medium,
     fontWeight: '600',
@@ -482,10 +482,10 @@ const styles = StyleSheet.create({
   },
   errorCard: {
     alignItems: 'center',
-    backgroundColor: TallerColors.softDanger,
+    backgroundColor: TallerColors.surface,
     borderRadius: 16,
     borderWidth: 1,
-    borderColor: '#FCA5A5',
+    borderColor: TallerColors.danger,
     padding: 20,
   },
   errorTitle: {

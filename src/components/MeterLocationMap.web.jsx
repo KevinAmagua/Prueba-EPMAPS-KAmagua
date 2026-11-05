@@ -195,7 +195,7 @@ const styles = StyleSheet.create({
   mapContainer: {
     borderRadius: 16,
     overflow: 'hidden',
-    backgroundColor: '#E2E8F0',
+    backgroundColor: TallerColors.background,
     borderWidth: 1,
     borderColor: TallerColors.border,
   },

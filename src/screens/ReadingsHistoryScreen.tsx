@@ -125,8 +125,8 @@ export default function ReadingsHistoryScreen() {
             color={
               item.ubicacion
                 ? item.isManualLocation
-                  ? '#92400E'
-                  : TallerColors.success
+                  ? TallerColors.textPrimary
+                  : TallerColors.successText
                 : TallerColors.textSecondary
             }
           />
@@ -416,20 +416,20 @@ const styles = StyleSheet.create({
     backgroundColor: TallerColors.softSuccess,
   },
   modeBadgeManual: {
-    backgroundColor: '#FEF3C7',
+    backgroundColor: TallerColors.warning,
   },
   modeBadgeMissing: {
     backgroundColor: TallerColors.background,
   },
   modeBadgeText: {
-    color: '#047857',
+    color: TallerColors.successText,
     fontSize: 10.5,
     fontFamily: FontFamily.bold,
     fontWeight: '800',
     textTransform: 'uppercase',
   },
   modeBadgeTextManual: {
-    color: '#92400E',
+    color: TallerColors.textPrimary,
   },
   modeBadgeTextMissing: {
     color: TallerColors.textSecondary,
@@ -438,7 +438,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: 9,
-    backgroundColor: TallerColors.softDanger,
+    backgroundColor: TallerColors.surface,
     borderRadius: 12,
     padding: 12,
   },

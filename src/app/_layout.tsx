@@ -13,7 +13,7 @@ import { StatusBar } from 'expo-status-bar';
 import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 
 import { OfflineBanner } from '@/components/OfflineBanner';
-import { CurvasDeNivel } from '@/components/curvas-de-nivel';
+import { StyledAlertProvider } from '@/components/StyledAlert';
 import { Colors } from '@/constants/Colors';
 import { SesionProvider, useSesion } from '@/context/sesion';
 import { obtenerMensajeErrorFirebase } from '@/lib/errores-firebase';
@@ -31,21 +31,22 @@ export default function RootLayout() {
 
   return (
     <SesionProvider>
-      <View style={styles.container}>
-        <CurvasDeNivel />
-        <StatusBar style="light" />
-        {fontsLoaded ? (
-          <>
-            <OfflineBanner />
-            <RutasProtegidas />
-          </>
-        ) : (
-          <View style={styles.loading}>
-            <ActivityIndicator size="large" color={Colors.primary} />
-            <Text style={styles.loadingMessage}>Preparando la aplicación…</Text>
-          </View>
-        )}
-      </View>
+      <StyledAlertProvider>
+        <View style={styles.container}>
+          <StatusBar style="light" />
+          {fontsLoaded ? (
+            <>
+              <OfflineBanner />
+              <RutasProtegidas />
+            </>
+          ) : (
+            <View style={styles.loading}>
+              <ActivityIndicator size="large" color={Colors.primary} />
+              <Text style={styles.loadingMessage}>Preparando la aplicación…</Text>
+            </View>
+          )}
+        </View>
+      </StyledAlertProvider>
     </SesionProvider>
   );
 }
@@ -75,7 +76,7 @@ function RutasProtegidas() {
   return (
     <Stack
       screenOptions={{
-        headerStyle: { backgroundColor: Colors.primary },
+        headerStyle: { backgroundColor: Colors.secondary },
         headerTintColor: '#FFFFFF',
         headerTitleStyle: {
           fontSize: 17,

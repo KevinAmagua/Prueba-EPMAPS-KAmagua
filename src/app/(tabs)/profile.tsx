@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import { Alert, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { router } from 'expo-router';
 
+import { useStyledAlert } from '@/components/StyledAlert';
 import { Colors } from '@/constants/Colors';
 import { FontFamily, cardShadow } from '@/constants/taller-colors';
 import { useSesion } from '@/context/sesion';
@@ -10,6 +11,7 @@ import { obtenerMensajeErrorFirebase } from '@/lib/errores-firebase';
 export default function ProfileScreen() {
   const { usuario, cerrarSesion } = useSesion();
   const [cerrandoSesion, setCerrandoSesion] = useState(false);
+  const showAlert = useStyledAlert();
 
   async function handleLogout() {
     setCerrandoSesion(true);
@@ -17,17 +19,17 @@ export default function ProfileScreen() {
       await cerrarSesion();
       router.replace('/login');
     } catch (error) {
-      Alert.alert('No se pudo cerrar sesión', obtenerMensajeErrorFirebase(error));
+      showAlert('No se pudo cerrar sesión', obtenerMensajeErrorFirebase(error));
     } finally {
       setCerrandoSesion(false);
     }
   }
 
   function confirmarLogout() {
-    Alert.alert('Cerrar Sesión', '¿Está seguro de que desea cerrar sesión en campo?', [
+    showAlert('Cerrar sesión', '¿Está seguro de que desea cerrar sesión en campo?', [
       { text: 'Cancelar', style: 'cancel' },
       {
-        text: 'Cerrar Sesión',
+        text: 'Cerrar sesión',
         style: 'destructive',
         onPress: () => {
           void handleLogout();

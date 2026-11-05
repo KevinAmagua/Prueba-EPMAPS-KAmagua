@@ -24,7 +24,7 @@ export function OfflineBanner() {
       <Ionicons
         name={isConnected ? (pendingCount > 0 ? 'cloud-upload-outline' : 'cloud-done-outline') : 'cloud-offline-outline'}
         size={18}
-        color="#FFFFFF"
+        color={isConnected ? Colors.textPrimary : Colors.surface}
         style={styles.icon}
       />
       <Text style={styles.text}>
@@ -47,13 +47,13 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     width: '100%',
     borderBottomWidth: 1,
-    borderBottomColor: 'rgba(255,255,255,0.22)',
+    borderBottomColor: Colors.secondary,
   },
   icon: {
     marginRight: 8,
   },
   text: {
-    color: '#FFFFFF',
+    color: Colors.surface,
     fontSize: 14,
     fontFamily: FontFamily.semibold,
     fontWeight: '700',

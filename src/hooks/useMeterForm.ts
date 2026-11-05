@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
-import { Alert } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useStyledAlert } from '@/components/StyledAlert';
 import { EstadoMedidor } from '@/types/medidor';
 import type { CoordenadaGPS } from '@/types/ubicacion';
 
@@ -49,6 +49,7 @@ function normalizarBorrador(parsed: Partial<MeterFormState> | null): MeterFormSt
  * Devuelve el estado, los controles de actualización y el estado de carga.
  */
 export function useMeterForm(codigoMedidor: string) {
+  const showAlert = useStyledAlert();
   const [formState, setFormState] = useState<MeterFormState>(crearEstadoInicial);
   const [hasDraft, setHasDraft] = useState<boolean>(false);
   const [loadingDraft, setLoadingDraft] = useState<boolean>(true);
@@ -69,7 +70,7 @@ export function useMeterForm(codigoMedidor: string) {
             borrador.estado !== 'normal';
 
           if (hasData) {
-            Alert.alert(
+            showAlert(
               'Captura pendiente encontrada',
               'Tienes un registro en curso sin guardar para este medidor. ¿Deseas continuar donde te quedaste o descartarlo?',
               [
@@ -103,7 +104,7 @@ export function useMeterForm(codigoMedidor: string) {
       console.error('[useMeterForm] Error al cargar borrador:', error);
       setLoadingDraft(false);
     }
-  }, [codigoMedidor]);
+  }, [codigoMedidor, showAlert]);
 
   /** Serializa y guarda el estado actual bajo la clave específica del medidor. */
   const saveDraft = useCallback(async (state: MeterFormState) => {

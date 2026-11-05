@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
     maxWidth: 320,
     alignItems: 'center',
     backgroundColor: TallerColors.surface,
-    borderRadius: 20,
+    borderRadius: 22,
     paddingHorizontal: 26,
     paddingTop: 24,
     paddingBottom: 28,

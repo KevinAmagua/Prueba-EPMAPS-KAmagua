@@ -1,6 +1,7 @@
 import { CameraModal } from '@/components/CameraModal';
 import MeterLocationMap from '@/components/MeterLocationMap';
 import { StatusAnimation } from '@/components/StatusAnimation';
+import { useStyledAlert } from '@/components/StyledAlert';
 import { Ionicons } from '@expo/vector-icons';
 import { Colors } from '@/constants/Colors';
 import { FontFamily, cardShadow } from '@/constants/taller-colors';
@@ -13,7 +14,6 @@ import { router, useLocalSearchParams } from 'expo-router';
 import { useCallback, useEffect, useState } from 'react';
 import {
   ActivityIndicator,
-  Alert,
   Image,
   ScrollView,
   StyleSheet,
@@ -28,6 +28,7 @@ const MEDIDORES_CACHE_KEY = '@medidores_cache';
 /** Formulario de captura de lectura asociado al código recibido en la ruta. */
 export default function CaptureScreen() {
   const { codigo } = useLocalSearchParams<{ codigo: string }>();
+  const showAlert = useStyledAlert();
   const [medidor, setMedidor] = useState<Medidor | null>(null);
   const { formState, updateField, clearDraft, hasDraft } = useMeterForm(codigo || '');
   const [cameraVisible, setCameraVisible] = useState(false);
@@ -120,7 +121,7 @@ export default function CaptureScreen() {
     if (!medidor) {
       const message = 'No se pudo identificar el medidor. Vuelve a buscarlo antes de guardar.';
       setSaveError(message);
-      Alert.alert('No se pudo guardar', message);
+      showAlert('No se pudo guardar', message);
       return;
     }
 
@@ -128,35 +129,35 @@ export default function CaptureScreen() {
       const message =
         'La ubicación es obligatoria. Espera la captura del GPS o ajusta el marcador manual en el mapa.';
       setSaveError(message);
-      Alert.alert('Ubicación requerida', message);
+      showAlert('Ubicación requerida', message);
       return;
     }
 
     // Validaciones R5
     if (formState.estado === 'normal') {
       if (!formState.lecturaActual.trim() || isNaN(lecturaNum)) {
-        Alert.alert('Lectura requerida', 'Debe ingresar una lectura válida para el estado normal.');
+        showAlert('Lectura requerida', 'Debe ingresar una lectura válida para el estado normal.');
         return;
       }
       if (lecturaNum < lecturaAnt) {
-        Alert.alert('Lectura inválida', 'La lectura actual no puede ser menor que la lectura anterior.');
+        showAlert('Lectura inválida', 'La lectura actual no puede ser menor que la lectura anterior.');
         return;
       }
     } else if (formState.estado === 'inaccesible') {
       if (!formState.observacion.trim()) {
-        Alert.alert('Motivo requerido', 'Debe registrar la justificación por la cual el medidor está inaccesible.');
+        showAlert('Motivo requerido', 'Debe registrar la justificación por la cual el medidor está inaccesible.');
         return;
       }
     } else if (formState.estado === 'dañado') {
       if (!formState.observacion.trim()) {
-        Alert.alert('Descripción requerida', 'Debe describir el daño observado en el medidor.');
+        showAlert('Descripción requerida', 'Debe describir el daño observado en el medidor.');
         return;
       }
     }
 
     // Validación R6 (consumo anómalo requiere confirmación)
     if (esAnomalo && !confirmedAnomaly) {
-      Alert.alert(
+      showAlert(
         'Consumo Anómalo Detectado',
         `El consumo calculado (${consumoCalculado} m³) supera 3 veces el promedio anterior. Por favor confirme el valor ingresado.`,
         [
@@ -169,7 +170,7 @@ export default function CaptureScreen() {
 
     // Validación R7 (foto obligatoria)
     if (fotoObligatoria && !formState.fotoUri) {
-      Alert.alert('Evidencia Requerida', 'Este registro exige una fotografía de respaldo obligatoria.');
+      showAlert('Evidencia requerida', 'Este registro exige una fotografía de respaldo obligatoria.');
       setCameraVisible(true);
       return;
     }
@@ -192,7 +193,7 @@ export default function CaptureScreen() {
         });
 
         if (yaRegistradoLocal) {
-          Alert.alert(
+          showAlert(
             'Registro duplicado',
             'Ya existe una lectura registrada para este medidor en el presente mes (en la cola local). No se permite registrar dos veces el mismo medidor en el mismo mes.'
           );
@@ -217,7 +218,7 @@ export default function CaptureScreen() {
         });
 
         if (yaRegistradoServer) {
-          Alert.alert(
+          showAlert(
             'Registro duplicado en servidor',
             'Ya existe una lectura registrada para este medidor en el presente mes en el sistema central. No se permite registrar dos veces el mismo medidor en el mismo mes.'
           );
@@ -252,7 +253,7 @@ export default function CaptureScreen() {
       const detail = error instanceof Error ? error.message : 'Error inesperado al guardar la lectura.';
       const message = `No se guardó la lectura. ${detail}`;
       setSaveError(message);
-      Alert.alert('No se pudo guardar', `La lectura no quedó guardada en el dispositivo.\n\n${detail}`);
+      showAlert('No se pudo guardar', `La lectura no quedó guardada en el dispositivo.\n\n${detail}`);
     } finally {
       setSaving(false);
     }
@@ -260,7 +261,7 @@ export default function CaptureScreen() {
 
   const handleSaveAnimationFinish = useCallback(() => {
     setSaveAnimation(null);
-    Alert.alert(
+    showAlert(
       '¡Lectura registrada con éxito!',
       'La lectura quedó guardada en este dispositivo y en la cola local. La app la sincronizará cuando el servidor esté disponible; si sigue pendiente, consulta el detalle del error en Gestión de Lecturas.',
       [
@@ -268,7 +269,7 @@ export default function CaptureScreen() {
         { text: 'Registrar otra', style: 'cancel' },
       ]
     );
-  }, []);
+  }, [showAlert]);
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
@@ -327,7 +328,7 @@ export default function CaptureScreen() {
             <TextInput
               style={styles.input}
               placeholder="0.0"
-              placeholderTextColor="#8C9BA5"
+              placeholderTextColor={Colors.textSecondary}
               keyboardType="numeric"
               value={formState.lecturaActual}
               onChangeText={(val) => updateField('lecturaActual', val)}
@@ -351,7 +352,7 @@ export default function CaptureScreen() {
             <TextInput
               style={[styles.input, styles.textArea]}
               placeholder="Ingrese el detalle aquí..."
-              placeholderTextColor="#8C9BA5"
+              placeholderTextColor={Colors.textSecondary}
               multiline
               value={formState.observacion}
               onChangeText={(val) => updateField('observacion', val)}
@@ -450,9 +451,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     gap: 9,
-    backgroundColor: '#FFF9E5',
+    backgroundColor: Colors.warning,
     borderWidth: 1,
-    borderColor: '#E8D891',
+    borderColor: Colors.warning,
     borderRadius: 12,
     padding: 14,
     marginBottom: 18,
@@ -554,30 +555,30 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontFamily: FontFamily.semibold,
     fontWeight: '600',
-    color: Colors.primary,
-    backgroundColor: '#EEF2FA',
+    color: Colors.secondary,
+    backgroundColor: Colors.background,
     borderRadius: 10,
     marginTop: 10,
     paddingHorizontal: 12,
     paddingVertical: 10,
   },
   warningBox: {
-    backgroundColor: '#FCEEEE',
+    backgroundColor: Colors.warning,
     borderWidth: 1,
-    borderColor: Colors.danger,
+    borderColor: Colors.warning,
     borderRadius: 12,
     padding: 14,
     marginTop: 16,
   },
   warningTitle: {
-    color: Colors.danger,
+    color: Colors.textPrimary,
     fontWeight: '700',
     fontSize: 14,
     fontFamily: FontFamily.bold,
     marginBottom: 6,
   },
   warningText: {
-    color: Colors.danger,
+    color: Colors.textPrimary,
     fontSize: 14,
     fontFamily: FontFamily.medium,
     lineHeight: 20,
@@ -589,12 +590,12 @@ const styles = StyleSheet.create({
     borderRadius: 14,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#EFF6FF',
+    backgroundColor: Colors.background,
     marginTop: 6,
     paddingHorizontal: 12,
   },
   photoButtonText: {
-    color: Colors.primary,
+    color: Colors.secondary,
     fontSize: 15,
     fontFamily: FontFamily.bold,
     fontWeight: '700',
@@ -631,7 +632,7 @@ const styles = StyleSheet.create({
     lineHeight: 20,
   },
   saveErrorBox: {
-    backgroundColor: '#FCEEEE',
+    backgroundColor: Colors.surface,
     borderWidth: 1,
     borderColor: Colors.danger,
     borderRadius: 12,
